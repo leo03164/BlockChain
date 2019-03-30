@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<Link rel=stylesheet TYPE="text/css" href="./css/design.css">
+<style>
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-3, .col-10, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<form name="form" method="post" action="register_finish.php">
+<div class="row">
+    <div class = content_tx>
+        <h1 class="title1">學生資料註冊系統</h1>
+        <label for="fname"><font size="3 px">學號：</font></label>                
+        <input type="text" id="id" name="id"><br>
+        <p></p>
+        
+        <label for="lname"><font size="3 px">密碼：</font></label>      
+        <input type="password" id="pw" name="pw"><br>   
+        <p></p>
+
+        <div style="padding-right: 1.2%">        
+        <label for="lname"><font size="3 px">密碼確認：</font></label>
+        <input type="password" id="pw2" name="pw2"><br>
+        <p></p>
+        </div>
+
+        <label for="lname"><font size="3 px">電話：</font></label>        
+        <input type="text" id="cellphone" name="cellphone"><br>
+        <p></p>
+
+        <div class = submit_bt>
+            <input type="submit" name="button" value="確定" />
+        </div>
+    </div>
+</div>
+</form>
+</body>
+</html>
