@@ -9,7 +9,7 @@ $id = $_POST['id'];
 $pw = $_POST['pw'];
 
 //搜尋資料庫資料
-$sql = "SELECT * FROM member_table where username = '$id'";
+$sql = "SELECT * FROM member where username = '$id'";
 $result = mysqli_query($conn,$sql);
 $row = @mysqli_fetch_row($result);
 

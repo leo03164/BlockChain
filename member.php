@@ -138,7 +138,7 @@ if($_SESSION['username'] != null){
 
         $id = $_SESSION['username'];
         //將資料庫裡的所有會員資料顯示在畫面上
-        $sql = "SELECT * FROM member_table where username ='$id'";
+        $sql = "SELECT * FROM member where username ='$id'";
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_row($result))
         {            

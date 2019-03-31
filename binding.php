@@ -8,18 +8,17 @@ $wallet = $_POST['wallet'];
 
 ?>
 
-
 <?php
 //紅色字體為判斷密碼是否填寫正確
 if($_SESSION['username'] != null){
         $id = $_SESSION['username'];
-        $sql = "SELECT * FROM member_table where username = '$id'";
+        $sql = "SELECT * FROM member where username = '$id'";
         $result = mysqli_query($conn,$sql);
         $row = @mysqli_fetch_row($result);
         
         //更新資料庫資料語法
         if($row[2] == $pw){
-                $sql = "UPDATE member_table set wallet='$wallet' where username='$id'";
+                $sql = "UPDATE member set wallet='$wallet' where username='$id'";
                 if(mysqli_query($conn,$sql)){
                         echo '修改成功!';
                         echo '<meta http-equiv=REFRESH CONTENT=2;url=member.php>';

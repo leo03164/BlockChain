@@ -13,7 +13,7 @@ $cellphone = $_POST['cellphone'];
 if($id != null && $pw != null && $pw2 != null && $pw == $pw2)
 {
         //新增資料進資料庫語法
-        $sql = "insert into member_table (username, password, cellphone) values ('$id', '$pw', '$cellphone')";
+        $sql = "insert into member (username, password, cellphone) values ('$id', '$pw', '$cellphone')";
         if(mysqli_query($conn,$sql))
         {
                 echo '新增成功!';
