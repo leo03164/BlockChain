@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="http://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.css" />
 <link rel="stylesheet" href="http://static.runoob.com/assets/js/jquery-treeview/screen.css" />
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="http://static.runoob.com/assets/js/jquery-treeview/jquery.cookie.js"></script>
+<!--<script src="http://static.runoob.com/assets/js/jquery-treeview/jquery.cookie.js"></script> -->
 <script src="http://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
 
 <!-- treeView -->
@@ -91,32 +91,7 @@
       function closeDialog(){
             dialog.style.display="none";
       } 
-
-      function test(name){
-      	//document.getElementById("demo").innerHTML=name;
-      	var URLs = "course.php";
-	      $.ajax({
-		  	url:URLs,
-                  async: true,
-		  	data:{'department':name},
-		  	type:"POST",
-		  	datatype:'JSON',
-
-		  	success:function(msg){
-                        //JSON.parse(msg);
-                        console.log(JSON.parse(msg));
-		  		//alert(msg);
-		  	},
-
-		  	error:function(xhr,ajaxOptions,thrownError){
-		  		alert(xhr.status);
-		  		alert(thrownError);
-		  	}
-		  });
-      }
-      
 </script>
-
 
 <style >
       table{
@@ -189,7 +164,7 @@ echo '<a href="logout.php">登出</a><br>';
             <ul id="browser" class="filetree treeview-famfamfam">
                   <li class="closed"><span class="folder">理工學院</span>
                         <ul>
-                            <li><span class="file"><a href="javascript:test('E_U');">學士班</a></span></li>
+                            <li><span class="file"><a href="javascript:departmentSelect('E_U');">學士班</a></span></li>
                               <li class="closed"><span class="folder">應用數學系</span>
                                     <ul>
                                           <li><span class="file"><a href="javascript:departmentSelect('AM_U');">學士班</a></span></li>
@@ -529,7 +504,7 @@ echo '<a href="logout.php">登出</a><br>';
                   <th>通識領域</th>
                   <th>備註　　</th>
             </table>
-      </td></tr>
+      </td></tr>      
   </table>
   <br>
 
@@ -558,7 +533,7 @@ echo '<a href="logout.php">登出</a><br>';
                               </div>
                   </div>                  
 <!---------------------------- 顯示所有資工系課程 ---------------------------->
-      <table  class="table table-bordered table-hover">
+      <table  class="table table-bordered table-hover" id = tb_body>
             <th>課程編號</th>
             <th>課程名稱</th>
             <th>必選修　</th>
@@ -570,6 +545,49 @@ echo '<a href="logout.php">登出</a><br>';
             <th>通識領域</th>
             <th>備註　　</th>
 
+<script>
+function departmentSelect(name){
+        var ini = document.getElementById('tb_body');
+        ini.innerHTML = '';
+        
+        var URLs = "course.php";
+        $.ajax({
+        url:URLs,
+        async: true,
+        data:{'department':name},
+        type:"POST",
+        datatype:'JSON',
+
+        success:function(msg){
+          var data = JSON.parse(msg);        
+          var str;          
+
+          for(var i in data){
+            
+            str = "<tr><th>"+data[i].course_code+"</th>"+
+              "<th>"+data[i].course_name+"</th>"+
+              "<th>"+data[i].required_ornot+"</th>"+
+              "<th>"+data[i].teacher+"</th>"+
+              "<th>"+data[i].time+"</th>"+
+              "<th>"+data[i].classroom+"</th>"+
+              "<th>"+data[i].credit+"</th>"+
+              "<th>"+data[i].max_student+"</th>"+
+              "<th>"+data[i].field+"</th>"+
+              "<th>"+data[i].PS+"</th></tr>";                  
+              document.getElementById('tb_body').insertAdjacentHTML('beforeend',str);
+              //console.log(str);
+          }          
+
+        },
+
+        error:function(xhr,ajaxOptions,thrownError){
+          alert(xhr.status);
+          alert(thrownError);
+        }
+      });
+      }  
+</script>
+</tr>
 <?php
 if(isset($_POST["Course_name"]) || isset($_POST["Course_te"]) || isset($_POST["Course_room"])){        
       searchCourse();
@@ -614,15 +632,17 @@ if(isset($_POST["Course_name"]) || isset($_POST["Course_te"]) || isset($_POST["C
           echo "<th>$row[7] </th>";
           echo "<th>$row[8] </th>";
           echo "<th>$row[9] </th>";
-                echo "</td>";
-                echo "</tr>"; 
+          echo "</td>";
+          echo "</tr>"; 
       }
 
   }
 ?>
+
       </table>
      </td>
-    </tr>
+    </tr>    
+    
 </table>
 
 </div>
