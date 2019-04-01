@@ -8,8 +8,24 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="http://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.css" />
 <link rel="stylesheet" href="http://static.runoob.com/assets/js/jquery-treeview/screen.css" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" rel="stylesheet">
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>
+
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<!--<script src="http://static.runoob.com/assets/js/jquery-treeview/jquery.cookie.js"></script> -->
 <script src="http://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
 
 <!-- treeView -->
@@ -542,7 +558,6 @@ echo '<a href="logout.php">登出</a><br>';
             <th>限修人數</th>
             <th>通識領域</th>
             <th>備註　　</th>
-      <!--<table class="table table-bordered table-hover" id = tb_body></table>-->
       
 <script>
 function departmentSelect(name){
@@ -607,11 +622,11 @@ function departmentSelect(name){
             $teTF = isset($_POST["Course_te"]);
             $roomTF = isset($_POST["Course_room"]);
 
-            if($nameTF)$Course_name = $_POST["Course_name"]; 
+            if($nameTF) $Course_name = $_POST["Course_name"]; 
             
-            if($teTF)$Course_te = $_POST["Course_te"];  
+            if($teTF) $Course_te = $_POST["Course_te"];  
             
-            if($roomTF)$Course_room = $_POST["Course_room"];
+            if($roomTF) $Course_room = $_POST["Course_room"];
 
             $sql_select = "SELECT * FROM course where course_name like '%$Course_name%' and teacher like '%$Course_te%' and  classroom like '%$Course_room%'";  
             
@@ -639,8 +654,6 @@ function departmentSelect(name){
       </table>
      </td>
     </tr>    
-    
-<!--</table>-->
 
 </div>
 </div>
