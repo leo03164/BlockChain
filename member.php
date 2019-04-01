@@ -533,7 +533,7 @@ echo '<a href="logout.php">登出</a><br>';
                               </div>
                   </div>                  
 <!---------------------------- 顯示所有資工系課程 ---------------------------->
-      <table  class="table table-bordered table-hover" id = tb_body>
+      <table  class="table table-bordered table-hover">
             <th>課程編號</th>
             <th>課程名稱</th>
             <th>必選修　</th>
@@ -544,6 +544,8 @@ echo '<a href="logout.php">登出</a><br>';
             <th>限修人數</th>
             <th>通識領域</th>
             <th>備註　　</th>
+       <table id = tb_body></table>
+      
 
 <script>
 function departmentSelect(name){
@@ -564,7 +566,7 @@ function departmentSelect(name){
 
           for(var i in data){
             
-            str = "<tr><th>"+data[i].course_code+"</th>"+
+            str = "<tr><th><a href='javascript:void(0);' onclick='vote()'>"+data[i].course_code+"</a></th>"+
               "<th>"+data[i].course_name+"</th>"+
               "<th>"+data[i].required_ornot+"</th>"+
               "<th>"+data[i].teacher+"</th>"+
