@@ -32,8 +32,6 @@
       });
 </script>
 
-
-
 <!-- bid -->
 <script>
         function vote() {
@@ -485,7 +483,7 @@ echo '<a href="logout.php">登出</a><br>';
       </td></tr>
     </table>
   </div>
-<div id = "test"></div>
+
 <div class="col-sm-9">
   <input type="submit" name="print_pre-select" value="列印預排課表" >
   <input type="submit" name="print_formal-select" value="列印正式課表" >
@@ -528,12 +526,12 @@ echo '<a href="logout.php">登出</a><br>';
                                           <span id=""> 上課教室:</span>
                                                 <input name="Course_room" type="text" maxlength="24" id="Course_room"><br>
                                           <br>
-                                          		<input name="department" type="hidden" maxlength="24" id="department"> <br>
+                                          	<!--<input name="department" type="hidden" maxlength="24" id="department"> <br>-->
                                                 <input type="submit" name="submit" value="確定" id = "submit"><!--要靠右對齊-->                                    
                               </div>
                   </div>                  
 <!---------------------------- 顯示所有資工系課程 ---------------------------->
-      <table  class="table table-bordered table-hover">
+      <table  class="table table-bordered table-hover" id = tb_body>
             <th>課程編號</th>
             <th>課程名稱</th>
             <th>必選修　</th>
@@ -544,9 +542,8 @@ echo '<a href="logout.php">登出</a><br>';
             <th>限修人數</th>
             <th>通識領域</th>
             <th>備註　　</th>
-       <table id = tb_body></table>
+      <!--<table class="table table-bordered table-hover" id = tb_body></table>-->
       
-
 <script>
 function departmentSelect(name){
         var ini = document.getElementById('tb_body');
@@ -563,7 +560,17 @@ function departmentSelect(name){
         success:function(msg){
           var data = JSON.parse(msg);        
           var str;          
-
+          var title =  "<th>課程編號</th>"+
+                        "<th>課程名稱</th>"+
+                        "<th>必選修　</th>"+
+                        "<th>教師　　</th>"+
+                        "<th>時間　　</th>"+
+                        "<th>教室　　</th>"+
+                        "<th>學分　　</th>"+
+                        "<th>限修人數</th>"+
+                        "<th>通識領域</th>"+
+                        "<th>備註　　</th>";
+            document.getElementById('tb_body').insertAdjacentHTML('beforeend',title);
           for(var i in data){
             
             str = "<tr><th><a href='javascript:void(0);' onclick='vote()'>"+data[i].course_code+"</a></th>"+
@@ -577,11 +584,9 @@ function departmentSelect(name){
               "<th>"+data[i].field+"</th>"+
               "<th>"+data[i].PS+"</th></tr>";                  
               document.getElementById('tb_body').insertAdjacentHTML('beforeend',str);
-              //console.log(str);
-          }          
-
+          }
+                  
         },
-
         error:function(xhr,ajaxOptions,thrownError){
           alert(xhr.status);
           alert(thrownError);
@@ -591,61 +596,51 @@ function departmentSelect(name){
 </script>
 </tr>
 <?php
-if(isset($_POST["Course_name"]) || isset($_POST["Course_te"]) || isset($_POST["Course_room"])){        
-      searchCourse();
-  }
+      if(isset($_POST["Course_name"]) || isset($_POST["Course_te"]) || isset($_POST["Course_room"])){        
+            searchCourse();
+      }
   
-  function searchCourse(){
-      include("mysql_connect.inc.php");
+      function searchCourse(){
+            include("mysql_connect.inc.php");
 
-      $nameTF = isset($_POST["Course_name"]);
-      $teTF = isset($_POST["Course_te"]);
-      $roomTF = isset($_POST["Course_room"]);
-      $dpTF = isset($_POST["department"]);
+            $nameTF = isset($_POST["Course_name"]);
+            $teTF = isset($_POST["Course_te"]);
+            $roomTF = isset($_POST["Course_room"]);
 
-      if($nameTF){
-          $Course_name = $_POST["Course_name"]; 
-      }
-      if($teTF){
-          $Course_te = $_POST["Course_te"];  
-      }
-      if($roomTF){
-          $Course_room = $_POST["Course_room"];
-      }
-      if($dpTF){
-          $department = $_POST["department"];
-      }
+            if($nameTF)$Course_name = $_POST["Course_name"]; 
+            
+            if($teTF)$Course_te = $_POST["Course_te"];  
+            
+            if($roomTF)$Course_room = $_POST["Course_room"];
 
-      $sql_select = "SELECT * FROM course where course_name like '%$Course_name%' and teacher like '%$Course_te%' and  classroom like '%$Course_room%'";  
+            $sql_select = "SELECT * FROM course where course_name like '%$Course_name%' and teacher like '%$Course_te%' and  classroom like '%$Course_room%'";  
+            
+            //3.data 解析
+            $result = mysqli_query($conn,$sql_select);
       
-      //3.data 解析
-      $result = mysqli_query($conn,$sql_select);
-  
-      while($row = mysqli_fetch_row($result)){   
-          echo "<tr>";          
-          echo "<th><a href='javascript:void(0);' onclick='vote()'>$row[0]</a></th>";  
-          //echo "<th>$row[0] </th>";
-          echo "<th>$row[1] </th>";
-          echo "<th>$row[2] </th>";
-          echo "<th>$row[3] </th>";
-          echo "<th>$row[4] </th>";
-          echo "<th>$row[5] </th>";
-          echo "<th>$row[6] </th>";
-          echo "<th>$row[7] </th>";
-          echo "<th>$row[8] </th>";
-          echo "<th>$row[9] </th>";
-          echo "</td>";
-          echo "</tr>"; 
+            while($row = mysqli_fetch_row($result)){   
+            echo "<tr>";          
+            echo "<th><a href='javascript:void(0);' onclick='vote()'>$row[0]</a></th>";  
+            echo "<th>$row[1] </th>";
+            echo "<th>$row[2] </th>";
+            echo "<th>$row[3] </th>";
+            echo "<th>$row[4] </th>";
+            echo "<th>$row[5] </th>";
+            echo "<th>$row[6] </th>";
+            echo "<th>$row[7] </th>";
+            echo "<th>$row[8] </th>";
+            echo "<th>$row[9] </th>";
+            echo "</td>";
+            echo "</tr>"; 
+            }
       }
-
-  }
 ?>
 
       </table>
      </td>
     </tr>    
     
-</table>
+<!--</table>-->
 
 </div>
 </div>
