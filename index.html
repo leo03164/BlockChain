@@ -1,148 +1,67 @@
-<!DOCTYPE html>
-<html lang="en"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>國立東華大學 校園選課系統</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
-</head>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-<style>
-    .container {
-        text-align: center;
-    }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="css/sign-in.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <form class="form-signin" method="post" action="connect.php">
+  <img class="mb-4" src="1553963333908.png" alt="" width="72" height="72">
 
-    body {
-        margin: 0;
-        padding: 0;
-        background: #F0FFF0;
-        text-align: center;
-        line-height: 18Px;
-    }
-</style>
+  <h1 class="h3 mb-3 font-weight-normal">請登入</h1>
 
-<body>
+  <label class="sr-only">Email address</label>
+  <input type="text" id="id" name = "id" class="form-control" placeholder="Stdeunt id" required autofocus>
 
-    <div class="row">
-        <div class="col-12">
-            <div style="padding-top: 50px">
-                <font face="標楷體" size="10px" color="黑色">國立東華大學 校園選課系統</font>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div style="padding-top: 30px">
-                <table class = "table table-bordered";  rules="all" cellpadding='3' align="center" ;>
-                    <tr>
-                        <td style="background-color: #E6E6FA ">事項 / 身份別 </td>
-                        <td style="background-color:#E6E6FA">開始時間 </td>
-                        <td style="background-color: #E6E6FA">結束時間 </td>
-                        <td style="background-color: #E6E6FA">說明 </td>
-                    </tr>
-                    <tr>
-                        <td><a href="連結網址">&nbsp;填寫教學意見調查表&nbsp;&nbsp;</a></td>
-                        <td>107年12月17日(一)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>108年1月18日(五)17:00&nbsp;&nbsp;&nbsp;</td>
-                        <td>(選課前，請先上網填寫,方能登入選課系統進行預排)</td>
-                    </tr>
-                    <tr>
-                        <td>第一次選課</td>
-                        <td>108年1月19日(二)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>108年1月22日(一)12:30 &nbsp;&nbsp;&nbsp;</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>網路選課篩選</td>
-                        <td>108年1月22日(二)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>108年1月24日(一)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>選課系統依該科目之『限修模式』、『人數』篩選</td>
-                    </tr>
-                    <tr>
-                        <td>第二次選課</td>
-                        <td>108年1月24日(二)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>108年1月28日(一)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>網路選課篩選</td>
-                        <td>108年1月28日(二)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>108年1月30日(一)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>選課系統依該科目之『限修模式』、『人數』篩選</td>
-                    </tr>
-                    <tr>
-                        <td>第三次選課</td>
-                        <td>108年1月31日(二)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>108年2月03日(一)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>網路選課篩選</td>
-                        <td>108年2月03日(二)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>108年2月05日(一)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>選課系統依該科目之『限修模式』、『人數』篩選</td>
-                    </tr>
-                    <tr>
-                        <td>期中停修申請</td>
-                        <td>108年5月12日(二)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>108年5月16日(一)12:30&nbsp;&nbsp;&nbsp;</td>
-                        <td>&nbsp;1.停修以1科為限。2.停修後不得低於系上規定學分數。3.其餘規定請參考本校停修辦法&nbsp;</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-8">
-            <div style=" padding-top: 30px">
-                <table class="table table-bordered;" rules="all" cellpadding='10' ;
-                    align="center">
-                    <tr>
-                        <td>
-                            <div class="container">
-                                <div style="padding-top: 20px">
-                                    <form action="connect.php" method="post" name="form">
-                                        <div class=content_tx>
-                                            <label for="fname">
-                                                <font face="微軟正黑體">
-                                                    <font size="3 px">學號：</font>
-                                            </label>
-                                            <input type="text" id="id" name="id">
-                                            <p></p>
-                                        </div>
-                                        <div style="padding-top: 12px">
-                                            <div class=content_tx>
-                                                <label for="lname">
-                                                    <font face="微軟正黑體">
-                                                        <font size="3 px">密碼： </font>
-                                                </label>
-                                                <input type="password" id="pw" name="pw">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                            <input type="submit" id="send" class = "btn btn-outline-success" value="登入">
-                                            &nbsp;
-                                            &nbsp;
-
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
-
-
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="pw" name = "pw" class="form-control" placeholder="Password" required>
+  
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <div class="row">
+      <div class="col-mb-3"></div>
+      <div class="col-md-6 mb-3">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </div>
+      <div class="col-md-6 mb-3">
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="javascript:location.href='register.html'">Sign up</button>
+      </div>
+      <div class="col-mb-3"></div>
+  </div>
+  
+  <p class="mt-5 mb-3 text-muted">&copy; 2017-2019 NDHU CSIE</p>
+</form>
 </body>
-
 </html>

@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+﻿<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +8,23 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="http://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.css" />
 <link rel="stylesheet" href="http://static.runoob.com/assets/js/jquery-treeview/screen.css" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" rel="stylesheet">
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>
+
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
 
@@ -33,8 +50,47 @@
 
 <!-- bid -->
 <script>
-      function vote() {
-        console.log("vote");
+        function vote() {
+            var money = prompt('請輸入投標金額:');
+
+            let tokenAddress = "0x50C01fc9000829C26ABF0E0075C5E4bBD75feBc5";
+            let toAddress = "0xb20cB125D9f1e0A8bfEf9d91259c4dbe769B987d";
+            let decimals = web3.toBigNumber(0);
+            // how much Learning coin do you want to cost?
+            let amount = web3.toBigNumber(money);
+            let minABI = [
+            // transfer
+            {
+                "constant": false,
+                "inputs": [
+                {
+                    "name": "_to",
+                    "type": "address"
+                },
+                {
+                    "name": "_value",
+                    "type": "uint256"
+                }
+                ],
+                "name": "transfer",
+                "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+                ],
+                "type": "function"
+            }
+            ];
+            // Get ERC20 Token contract instance
+            let contract = web3.eth.contract(minABI).at(tokenAddress);
+            // calculate ERC20 token amount
+            let value = amount.times(web3.toBigNumber(10).pow(decimals));
+            // call transfer function
+            contract.transfer(toAddress, value, (error, txHash) => {
+            // it returns tx hash because sending tx
+            console.log(txHash);
+            });
       }
 
       var dialog;
@@ -485,7 +541,8 @@ echo '<a href="logout.php">登出</a><br>';
                                           <br>
                                           <span id=""> 上課教室:</span>
                                                 <input name="Course_room" type="text" maxlength="24" id="Course_room"><br>
-                                          <br>                                          	
+                                          <br>
+                                          	<!--<input name="department" type="hidden" maxlength="24" id="department"> <br>-->
                                                 <input type="submit" name="submit" value="確定" id = "submit"><!--要靠右對齊-->                                    
                               </div>
                   </div>                  
@@ -576,8 +633,9 @@ function departmentSelect(name){
             //3.data 解析
             $result = mysqli_query($conn,$sql_select);
       
-            while($row = mysqli_fetch_row($result)){               
-            echo "<tr><th><a href='javascript:void(0);' onclick='vote()'>$row[0]</a></th>";  
+            while($row = mysqli_fetch_row($result)){   
+            echo "<tr>";          
+            echo "<th><a href='javascript:void(0);' onclick='vote()'>$row[0]</a></th>";  
             echo "<th>$row[1] </th>";
             echo "<th>$row[2] </th>";
             echo "<th>$row[3] </th>";
@@ -586,7 +644,9 @@ function departmentSelect(name){
             echo "<th>$row[6] </th>";
             echo "<th>$row[7] </th>";
             echo "<th>$row[8] </th>";
-            echo "<th>$row[9] </th></td></tr>";             
+            echo "<th>$row[9] </th>";
+            echo "</td>";
+            echo "</tr>"; 
             }
       }
 ?>
