@@ -1,47 +1,119 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<Link rel=stylesheet TYPE="text/css" href="./css/design.css">
-<style>
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-    .col-3, .col-10, input[type=submit] {
-        width: 100%;
-        margin-top: 0;
-    }
-}
-</style>
-</head>
-<body>
-<div class="container">
-<form name="form" method="post" action="register_finish.php">
-<div class="row">
-    <div class = content_tx>
-        <h1 class="title1">學生資料註冊系統</h1>
-        <label for="fname"><font size="3 px">學號：</font></label>                
-        <input type="text" id="id" name="id"><br>
-        <p></p>
-        
-        <label for="lname"><font size="3 px">密碼：</font></label>      
-        <input type="password" id="pw" name="pw"><br>   
-        <p></p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <div style="padding-right: 1.2%">        
-        <label for="lname"><font size="3 px">密碼確認：</font></label>
-        <input type="password" id="pw2" name="pw2"><br>
-        <p></p>
+    <title>Register</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
+
+    <!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="css/form-validation.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="1553963347389.png" alt="" width="72" height="72">
+    <h2>Create a New Account</h2>    
+  </div>
+  
+      <form class="needs-validation" method="post" action="register_finish.php" novalidate>
+        <div class="row">
+          <div class="col-md-2 mb-3"></div>
+          <div class="col-md-4 mb-3">
+            <label for="firstName">name</label>
+            <input type="text" class="form-control" id="Name" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <label for="studentID">ID</label>
+            <input type="text" class="form-control" id="id" name = "id" placeholder="studentID">
+              <div class="invalid-feedback">
+                  Please enter a valid student id.
+              </div>
+          </div>
+          <div class="col-md-2 mb-3"></div>
         </div>
 
-        <label for="lname"><font size="3 px">電話：</font></label>        
-        <input type="text" id="cellphone" name="cellphone"><br>
-        <p></p>
+        <div class="row">
+            <div class="col-md-2 mb-3"></div>
+            <div class="col-md-4 mb-3">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="pw" name = "pw" required>
+                <div class="invalid-feedback">
+                    Please enter your password.
+                </div>
+            </div>
 
-        <div class = submit_bt>
-            <input type="submit" name="button" value="確定" />
+            <div class="col-md-4 mb-3">
+              <label for="password2">RePassword</label>
+              <input type="password" class="form-control" id="pw2" name = "pw2" required>
+              <div class="invalid-feedback">
+                  Please enter your password.
+              </div>
+            </div>
+            <div class="col-md-2 mb-3"></div>
+          </div>
+
+        <div class="row">
+          <div class="col-md-2 mb-3"></div>
+          <div class="col-md-4 mb-3">
+            <label for="date">Birthday</label>
+            <input class="form-control" id="birthday" type="date" required>
+          </div>
+
+          <div class="col-md-4 mb-3">
+              <label for="address">Cellphone</label>
+              <input type="text" class="form-control" id="cellphone" name = "cellphone" placeholder="0938XXXXXX" required>
+              <div class="invalid-feedback">
+                  Please enter your cellphone.
+              </div>
+          </div>      
+          <div class="col-md-3 mb-3"></div>    
         </div>
+    
+          <div class="row">
+              <div class="col-9"></div>
+              <div class="col-md-2"><input class="btn btn-primary" type="submit" value="Submit"></div>
+          </div>
+      </form>
     </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017-2019 NDHU CSIE</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
 </div>
-</form>
-</body>
+<script src="js/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+      <script src="js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+        <script src="js/form-validation.js"></script></body>
 </html>

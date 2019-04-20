@@ -1,4 +1,4 @@
-﻿<?php session_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,75 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="http://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.css" />
-<link rel="stylesheet" href="http://static.runoob.com/assets/js/jquery-treeview/screen.css" />
+<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+<link href="metro-icons.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<!--<script src="http://static.runoob.com/assets/js/jquery-treeview/jquery.cookie.js"></script> -->
 <script src="http://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
 
-<!-- treeView -->
-<script type="text/javascript">
-      $(document).ready(function(){
-            $("#browser").treeview({
-                  toggle: function() {
-                        console.log("%s was toggled.", $(this).find(">span").text());
-                  }
-            });
-
-            $("#add").click(function() {
-                  var branches = $("<li><span class='folder'>New Sublist</span><ul>" +
-                        "<li><span class='file'>Item1</span></li>" +
-                        "<li><span class='file'>Item2</span></li></ul></li>").appendTo("#browser");
-                  $("#browser").treeview({
-                        add: branches
-                  });
-            });
-      });
-</script>
 
 <!-- bid -->
 <script>
-        function vote() {
-            var money = prompt('請輸入投標金額:');
-
-            let tokenAddress = "0x50C01fc9000829C26ABF0E0075C5E4bBD75feBc5";
-            let toAddress = "0xb20cB125D9f1e0A8bfEf9d91259c4dbe769B987d";
-            let decimals = web3.toBigNumber(0);
-            // how much Learning coin do you want to cost?
-            let amount = web3.toBigNumber(money);
-            let minABI = [
-            // transfer
-            {
-                "constant": false,
-                "inputs": [
-                {
-                    "name": "_to",
-                    "type": "address"
-                },
-                {
-                    "name": "_value",
-                    "type": "uint256"
-                }
-                ],
-                "name": "transfer",
-                "outputs": [
-                {
-                    "name": "",
-                    "type": "bool"
-                }
-                ],
-                "type": "function"
-            }
-            ];
-            // Get ERC20 Token contract instance
-            let contract = web3.eth.contract(minABI).at(tokenAddress);
-            // calculate ERC20 token amount
-            let value = amount.times(web3.toBigNumber(10).pow(decimals));
-            // call transfer function
-            contract.transfer(toAddress, value, (error, txHash) => {
-            // it returns tx hash because sending tx
-            console.log(txHash);
-            });
+      function vote() {
+        console.log("vote");
       }
 
       var dialog;
@@ -93,7 +36,6 @@
 
 <style >
       table{
-            border:5px#7FFFD4 dashed ;
             padding:10px;
             width: 100%;
       }
@@ -159,8 +101,8 @@ echo '<a href="logout.php">登出</a><br>';
   <div class="col-sm-2">
     <table>
       <tr><td>
-            <ul id="browser" class="filetree treeview-famfamfam">
-                  <li class="closed"><span class="folder">理工學院</span>
+            <ul data-role="treeview">
+            <li data-icon="<span class='mif-android fg-green'></span>" class="closed" data-caption=" "><span >理工學院</span>
                         <ul>
                             <li><span class="file"><a href="javascript:departmentSelect('E_U');">學士班</a></span></li>
                               <li class="closed"><span class="folder">應用數學系</span>
@@ -221,7 +163,7 @@ echo '<a href="logout.php">登出</a><br>';
                               </li>
                         </ul>
                   </li>
-                  <li class="closed"><span class="folder">管理學院</span>
+                  <li data-icon="<span class='mif-organization fg-red'></span>" class="closed" data-caption=" "><span >管理學院</span>
                         <ul>
                               <li><span class="file"><a href="javascript:departmentSelect('MSF_U');">學士班</a></span></li>
                               <li class="closed"><span class="folder">管理學院管理科學與財金國際學士學位學程</span>
@@ -276,7 +218,9 @@ echo '<a href="logout.php">登出</a><br>';
                               </li>
                         </ul>
                   </li>
-                  <li class="closed"><span class="folder">人文社會科學學院</span>
+
+                  <li data-icon="<span class='mif-fingerprint fg-red'></span>" class="closed" data-caption=" "><span >人文社會科學學院</span>
+                  
                         <ul>
                                <li><span class="file"><a href="javascript:departmentSelect('HASS_U');">學士班</a></span></li>
                                <li class="closed"><span class="folder">華文文學系</span>
@@ -353,7 +297,7 @@ echo '<a href="logout.php">登出</a><br>';
                               </li>
                         </ul>
                   </li>
-                  <li class="closed"><span class="folder">原住民民族院</span>
+                  <li data-icon="<span class='mif-barbell fg-blue'></span>" class="closed" data-caption=" "><span >原住民民族院</span>
                         <ul>
                               <li><span class="file"><a href="javascript:departmentSelect('CIS_U');">學士班</a></span></li>
                               <li class="closed"><span class="folder">族群關係與文化學系</span>
@@ -380,7 +324,8 @@ echo '<a href="logout.php">登出</a><br>';
                               </li>
                         </ul>
                   </li>
-                  <li class="closed"><span class="folder">藝術學院</span>
+                  
+                  <li data-icon="<span class='mif-pinterest fg-pink'></span>" class="closed" data-caption=" "><span >藝術學院</span>
                         <ul>
                               <li><span class="file"><a href="javascript:departmentSelect('AD_U');">學士班</a></span></li>
                               <li class="closed"><span class="folder">藝術創意產業學系</span>
@@ -403,7 +348,9 @@ echo '<a href="logout.php">登出</a><br>';
                               </li>
                         </ul>
                   </li>
-                  <li class="closed"><span class="folder">花師教育學院</span>
+                  
+                  <li data-icon="<span class='mif-books fg-black'></span>" class="closed" data-caption=" "><span >花師教育學院</span>
+                  
                         <ul>
                               <li><span class="file"><a href="javascript:departmentSelect('CE_U');">學士班</a></span></li>
                               <li class="closed"><span class="folder">幼兒教育學系</span>
@@ -441,7 +388,7 @@ echo '<a href="logout.php">登出</a><br>';
                               </li>
                         </ul>
                   </li>
-                  <li class="closed"><span class="folder">環境學院</span>
+                  <li data-icon="<span class='mif-earth fg-blue'></span>" class="closed" data-caption=" "><span >環境學院</span>
                         <ul>
                               <li><span class="file"><a href="javascript:departmentSelect('CES_U');">學士班</a></span></li>
                               <li class="closed"><span class="folder">自然資源與環境學系</span>
@@ -457,19 +404,20 @@ echo '<a href="logout.php">登出</a><br>';
                               </li>
                         </ul>
                   </li>
-                  <li class="closed"><span class="folder">海洋學院</span>
+                  <li data-icon="<span class='mif-weather5 fg-blue'></span>" class="closed" data-caption=" "><span >海洋學院</span>
                         <ul>
                               <li><span class="file"><a href="javascript:departmentSelect('MBE_M');">海洋生物碩士班</a></span></li>
                         </ul>
                   </li>
-                  <li class="closed"><span class="folder">師資培育中心</span>
+
+                  <li data-icon="<span class='mif-calculator fg-orange'></span>" class="closed" data-caption=" "><span >師資培育中心</span>
                         <ul>
                               <li><span class="file"><a href="javascript:departmentSelect('TH_U');">小學教育(學士班)</a></span></li>
                               <li><span class="file"><a href="javascript:departmentSelect('EP_U');">中學教育(學士班)</a></span></li>
                               <li><span class="file"><a href="javascript:departmentSelect('ETH_U');">卓越儲備教師增能學程(學士班)</a></span></li>
                         </ul>
                   </li>
-                  <li class="closed"><span class="folder">通識教育中心</span>
+                  <li data-icon="<span class='mif-wikipedia fg-blacl'></span>" class="closed" data-caption=" "><span >通識教育中心</span>
                         <ul>
                               <li class="closed"><span class="folder">校核心課程(新生)</span>
                                     <ul>
@@ -509,7 +457,7 @@ echo '<a href="logout.php">登出</a><br>';
   <table cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_grd_subjs" style="width:100%;border-collapse:collapse;">
     <tr>
       <td colspan="14">
-          <button style="font-family:標楷體;background-color:#AAFFEE ;font-size:20pt; width:180px ; height:40px; color:  #00008B"  onclick="showDialog();">開放課程查詢</button>
+          <button class = "btn btn-primary"  onclick="showDialog();">開放課程查詢</button>
                   <div id="dialog" class="dialog">
                         <div onclick="closeDialog();" class="close">X</div>
                               <div class="items">
@@ -525,8 +473,7 @@ echo '<a href="logout.php">登出</a><br>';
                                           <br>
                                           <span id=""> 上課教室:</span>
                                                 <input name="Course_room" type="text" maxlength="24" id="Course_room"><br>
-                                          <br>
-                                          	<!--<input name="department" type="hidden" maxlength="24" id="department"> <br>-->
+                                          <br>                                          	
                                                 <input type="submit" name="submit" value="確定" id = "submit"><!--要靠右對齊-->                                    
                               </div>
                   </div>                  
@@ -542,7 +489,6 @@ echo '<a href="logout.php">登出</a><br>';
             <th>限修人數</th>
             <th>通識領域</th>
             <th>備註　　</th>
-      <!--<table class="table table-bordered table-hover" id = tb_body></table>-->
       
 <script>
 function departmentSelect(name){
@@ -607,20 +553,19 @@ function departmentSelect(name){
             $teTF = isset($_POST["Course_te"]);
             $roomTF = isset($_POST["Course_room"]);
 
-            if($nameTF)$Course_name = $_POST["Course_name"]; 
+            if($nameTF) $Course_name = $_POST["Course_name"]; 
             
-            if($teTF)$Course_te = $_POST["Course_te"];  
+            if($teTF) $Course_te = $_POST["Course_te"];  
             
-            if($roomTF)$Course_room = $_POST["Course_room"];
+            if($roomTF) $Course_room = $_POST["Course_room"];
 
             $sql_select = "SELECT * FROM course where course_name like '%$Course_name%' and teacher like '%$Course_te%' and  classroom like '%$Course_room%'";  
             
             //3.data 解析
             $result = mysqli_query($conn,$sql_select);
       
-            while($row = mysqli_fetch_row($result)){   
-            echo "<tr>";          
-            echo "<th><a href='javascript:void(0);' onclick='vote()'>$row[0]</a></th>";  
+            while($row = mysqli_fetch_row($result)){               
+            echo "<tr><th><a href='javascript:void(0);' onclick='vote()'>$row[0]</a></th>";  
             echo "<th>$row[1] </th>";
             echo "<th>$row[2] </th>";
             echo "<th>$row[3] </th>";
@@ -629,9 +574,7 @@ function departmentSelect(name){
             echo "<th>$row[6] </th>";
             echo "<th>$row[7] </th>";
             echo "<th>$row[8] </th>";
-            echo "<th>$row[9] </th>";
-            echo "</td>";
-            echo "</tr>"; 
+            echo "<th>$row[9] </th></td></tr>";             
             }
       }
 ?>
@@ -639,8 +582,6 @@ function departmentSelect(name){
       </table>
      </td>
     </tr>    
-    
-<!--</table>-->
 
 </div>
 </div>
