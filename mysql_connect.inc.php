@@ -7,7 +7,7 @@ $db_name = "course";
 //資料庫管理者帳號
 $db_user = "root";
 //資料庫管理者密碼
-$db_passwd = "e124818643";
+$db_passwd = "yourpassword";
 
 $conn = new mysqli($db_server,$db_user,$db_passwd);
 
